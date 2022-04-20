@@ -254,7 +254,7 @@
 
       if (document.getElementById("kids_yes").checked) {
         console.log("Kids yes")
-        result = subMinutesFromDate(result, 15)
+        result = subMinutesFromDate(result, 60)
       }
       if (document.getElementById("dogs_yes").checked) {
         console.log("Dogs yes")
@@ -285,7 +285,7 @@
         </div>
       </div>
       <div class="question">
-        <p>Lapset? (-15 min)</p>
+        <p>Lapset? (-60 min)</p>
         <div class="question-answer">
           <input type="radio" value="none" id="kids_yes" name="kids" onchange="updateTime()" />
           <label for="kids_yes" class="radio"><span>Kyllä</span></label>
