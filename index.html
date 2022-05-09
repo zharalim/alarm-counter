@@ -123,10 +123,6 @@
       margin: 10px 0;
     }
 
-    input[type="date"]::-webkit-inner-spin-button {
-      display: none;
-    }
-
     .item i,
     input[type="date"]::-webkit-calendar-picker-indicator {
       position: absolute;
@@ -192,24 +188,13 @@
       opacity: 1;
     }
 
-    .btn-block {
+    .result-block {
       margin-top: 10px;
       text-align: center;
     }
 
-    button {
-      width: 150px;
-      padding: 10px;
-      border: none;
-      border-radius: 5px;
-      background: #bf42b3;
-      font-size: 16px;
-      color: #fff;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background: #82b534;
+    .result-block label {
+      font-size: 36px;
     }
 
     @media (min-width: 568px) {
@@ -248,21 +233,25 @@
           selectedTime = i.value
         }
       }
-      console.log(selectedTime)
-      var date = new Date('2000-01-01T' + selectedTime + ':00Z');
-      var result = subMinutesFromDate(date, 80)
 
-      if (document.getElementById("kids_yes").checked) {
-        console.log("Kids yes")
-        result = subMinutesFromDate(result, 60)
-      }
-      if (document.getElementById("dogs_yes").checked) {
-        console.log("Dogs yes")
-        result = subMinutesFromDate(result, 15)
-      }
-      var resultLabel = document.getElementById("result");
-      resultLabel.textContent = result.getUTCHours() + ":" + result.getUTCMinutes()
+      if (!selectedTime) {
+        console.log("No time selection")
+      } else {
+        console.log(selectedTime)
+        var date = new Date('2000-01-01T' + selectedTime + ':00Z');
+        var result = subMinutesFromDate(date, 80)
 
+        if (document.getElementById("kids_yes").checked) {
+          console.log("Kids yes")
+          result = subMinutesFromDate(result, 60)
+        }
+        if (document.getElementById("dogs_yes").checked) {
+          console.log("Dogs yes")
+          result = subMinutesFromDate(result, 15)
+        }
+        var resultLabel = document.getElementById("result");
+        resultLabel.textContent = result.getUTCHours() + ":" + result.getUTCMinutes()
+      }
     }
   </script>
 </head>
@@ -306,11 +295,8 @@
           <label for="dogs_no" class="radio"><span>Ei</span></label>
         </div>
       </div>
-      <div class="question">
-        <p>Tulos</p>
-        <div class="question-answer">
-          <label id="result"><span>-</span></label>
-        </div>
+      <div class="result-block">
+        <label id="result"><span>-</span></label>
       </div>
     </form>
   </div>
